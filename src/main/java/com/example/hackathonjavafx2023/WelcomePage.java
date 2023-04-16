@@ -12,9 +12,11 @@ import java.io.IOException;
 public class WelcomePage {
     private JTextField studySession;
     private JButton submit;
+
+    private int studyHrs;
     private JTabbedPane panel;
     WelcomePage(String userID) {
-
+        studyHrs = 0;
 //        JLabel welcomeLabel = new JLabel("Hello!");
 //        JFrame frame = new JFrame();
 //
@@ -54,7 +56,7 @@ public class WelcomePage {
 
         JPanel panel1 = new JPanel();
         panel1.setName("Tasks");
-        panel1.add(new JLabel("This is the content of tab 1", SwingConstants.CENTER));
+        panel1.add(new JLabel("Current tasks: Study for " + studyHrs, SwingConstants.CENTER));
         JPanel panel2 = new JPanel();
         panel2.setName("Calendar");
         panel2.add(new JLabel("This is the content of tab 2", SwingConstants.CENTER));
@@ -69,7 +71,9 @@ public class WelcomePage {
         submit.addActionListener(new ActionListener() {
                                      @Override
                                      public void actionPerformed(ActionEvent e) {
-                                         if (e.getSource() == submit) {
+                                         if (e.getSource() == e) {
+                                             int hours = Integer.parseInt(submit.getText());
+                                             studyHrs += hours;
                                              System.out.println("Your study session has been submitted!");
                                          }
                                      }
