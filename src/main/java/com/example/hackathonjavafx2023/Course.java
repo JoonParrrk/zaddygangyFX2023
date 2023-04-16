@@ -3,10 +3,12 @@ package com.example.hackathonjavafx2023;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Course {
     private String courseName;
     private double extraCredit;
+    private boolean didExtra= false;
     /*
     User's goal grade
      */
@@ -59,11 +61,25 @@ public class Course {
         this.goalGrade = goalGrade;
     }
 
-    public void setCurrentGrade(HashSet<Task> exams, HashSet<Task> quizzes,HashSet<Task> assignments,
-                                  HashSet<Task> projects, HashMap<String, Double> weight, double extraCredit) {
-
+    public void setCurrentGrade() {
+/*
+HashSet<Task> exams, HashSet<Task> quizzes,HashSet<Task> assignments,
+                                  HashSet<Task> projects, HashMap<String, Double> weight, double extraCredit
+ */
         currentGrade = GradeCalc.getCurrentGrades(exams, quizzes,assignments, projects, weight, extraCredit);
+       if(didExtra) {
+           currentGrade += extraCredit;
+       }
     }
+
+    public boolean isDidExtra() {
+        return didExtra;
+    }
+
+    public void setDidExtra(boolean didExtra) {
+        this.didExtra = didExtra;
+    }
+
     public double getCurrentGrade() {
         return currentGrade;
     }
@@ -96,24 +112,102 @@ public class Course {
         this.courseName = courseName;
     }
 
-    public HashSet<Task> getExams() {
-        return exams;
+    public double getGoalGrade() {
+        return goalGrade;
     }
 
-    public void setExams(HashSet<Task> exams) {
-        this.exams = exams;
+    public void setGoalGrade(double goalGrade) {
+        this.goalGrade = goalGrade;
+    }
+
+    public void setCurrentGrade(double currentGrade) {
+        this.currentGrade = currentGrade;
+    }
+
+    public HashSet<Task> getExams() {
+        return exams;
     }
 
     public HashSet<Task> getQuizzes() {
         return quizzes;
     }
 
+    public HashSet<Task> getAssignments() {
+        return assignments;
+    }
+
+    public HashSet<Task> getProjects() {
+        return projects;
+    }
+
+    public String stringExams() {
+        Iterator<Task> iter = exams.iterator();
+
+        String output = "";
+        while(iter.hasNext()) {
+            Task t = iter.next();
+            //String name, double minScore, double maxScore, double currScore, Date deadline
+            output = output + ("Name: " + t.getProjName() + ", " + "MinScore: " + t.getMinScore() + ", " +
+                    "MaxScore: " + t.getMaxScore() + ", " + "CurrScore: " + t.getCurrScore() + ", " +
+                    "DeadLine: "+ t.getDeadline())+ "\n" ;
+        }
+        return output ;
+    }
+
+    public void setExams(HashSet<Task> exams) {
+        this.exams = exams;
+    }
+
+    public String stringQuizzes() {
+
+        Iterator<Task> iter = quizzes.iterator();
+
+        String output = "";
+        while(iter.hasNext()) {
+            Task t = iter.next();
+            //String name, double minScore, double maxScore, double currScore, Date deadline
+            output = output + ("Name: " + t.getProjName() + ", " + "MinScore: " + t.getMinScore() + ", " +
+                    "MaxScore: " + t.getMaxScore() + ", " + "CurrScore: " + t.getCurrScore() + ", " +
+                    "DeadLine: "+ t.getDeadline())+ "\n";
+        }
+        return output;
+    }
+
     public void setQuizzes(HashSet<Task> quizzes) {
         this.quizzes = quizzes;
     }
 
-    public HashSet<Task> getAssignments() {
-        return assignments;
+    public String stringAssignments() {
+
+        Iterator<Task> iter = assignments.iterator();
+
+        String output = "";
+        while(iter.hasNext()) {
+            Task t = iter.next();
+            //String name, double minScore, double maxScore, double currScore, Date deadline
+            output = output + ("Name: " + t.getProjName() + ", " + "MinScore: " + t.getMinScore() + ", " +
+                    "MaxScore: " + t.getMaxScore() + ", " + "CurrScore: " + t.getCurrScore() + ", " +
+                "DeadLine: "+ t.getDeadline())+ "\n" ;
+        }
+        return output ;
+    }
+
+    public String stringProjects() {
+        Iterator<Task> iter = projects.iterator();
+
+        String output = "";
+        while(iter.hasNext()) {
+            Task t = iter.next();
+            //String name, double minScore, double maxScore, double currScore, Date deadline
+            output = output + ("Name: " + t.getProjName() + ", " + "MinScore: " + t.getMinScore() + ", " +
+                    "MaxScore: " + t.getMaxScore() + ", " + "CurrScore: " + t.getCurrScore() + ", " +
+                    "DeadLine: "+ t.getDeadline()) + "\n";
+        }
+        return output;
+    }
+
+    public void setProjects(HashSet<Task> projects) {
+        this.projects = projects;
     }
 
     public void setAssignments(HashSet<Task> assignments) {
@@ -124,7 +218,14 @@ public class Course {
         return weight;
     }
 
+    public void addWeight(String topic, double weigh) {
+        // add your topic and how much it weigh
+        // EX) topic: "Quiz" weigh: 5       -----> All the quizzes added up will contribute 5% of your total grade
+        weight.put(topic,weigh);
+    }
     public void setWeight(HashMap<String, Double> weight) {
         this.weight = weight;
     }
+
+
 }

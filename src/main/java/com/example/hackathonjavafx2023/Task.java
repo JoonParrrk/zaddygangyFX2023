@@ -9,6 +9,14 @@ public class Task {
     private double currScore;
     private Date deadline;
 
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
     /**
      *
      * @param name: name of the assignment: Ex) Quiz3 or Homework2.
