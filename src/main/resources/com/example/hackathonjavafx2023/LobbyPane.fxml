@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.RadioMenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hackathonjavafx2023.LobbyController">
+<children>
+    <MenuBar prefHeight="28.0" prefWidth="600.0">
+        <menus>
+            <Menu mnemonicParsing="false" text="File">
+                <items>
+                    <MenuItem mnemonicParsing="false" onAction="#NewMethod" text="New">
+                        <accelerator>
+                            <KeyCodeCombination alt="UP" code="N" control="UP" meta="UP" shift="DOWN" shortcut="UP" />
+                        </accelerator></MenuItem>
+                    <MenuItem mnemonicParsing="false" text="Save" />
+                    <CheckMenuItem mnemonicParsing="false" text="AutoSave" />
+                    <RadioMenuItem mnemonicParsing="false" text="Option1">
+                        <toggleGroup>
+                            <ToggleGroup fx:id="myGroup" />
+                        </toggleGroup>
+                    </RadioMenuItem>
+                    <RadioMenuItem mnemonicParsing="false" text="Option2" toggleGroup="$myGroup" />
+                    <SeparatorMenuItem mnemonicParsing="false" />
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Grade">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="Action 1" />
+                </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+                <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                </items>
+            </Menu>
+        </menus>
+    </MenuBar>
+    <Label fx:id="nameLabel" layoutX="14.0" layoutY="28.0" text=" username: ">
+        <font>
+            <Font size="20.0" />
+        </font>
+    </Label>
+      <Label fx:id="currentDate" layoutX="364.0" layoutY="41.0" prefHeight="17.0" prefWidth="222.0" text="CurrentDate" textFill="#ab2626" />
+      <TreeView fx:id="treeView" layoutX="32.0" layoutY="100.0" onContextMenuRequested="#selectItem" onMouseClicked="#selectItem" prefHeight="273.0" prefWidth="466.0" />
+</children>
+</AnchorPane>
