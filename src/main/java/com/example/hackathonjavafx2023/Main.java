@@ -1,17 +1,30 @@
 package com.example.hackathonjavafx2023;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
-public class Main {
-    public static void main(String[] args) {
-        System.out.println("Hello world!");
-        System.out.println("Moe");
-        System.out.println("JOON");
-        
-        for(int i = 0; i < 9; i++) {
-            System.out.println(i);
+import java.io.IOException;
+
+public class Main extends Application { //package com.example.hackathonjavafx2023;
+
+    @Override
+    public void start(Stage stage) throws IOException {
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("Main.fxml"));
+            Scene scene = new Scene(root);
+            stage.setTitle("Hello!");
+            stage.setScene(scene);
+            stage.show();
         }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    public static void main(String[] args) {
+        launch();
     }
 }
